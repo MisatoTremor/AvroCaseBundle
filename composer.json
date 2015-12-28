@@ -17,7 +17,6 @@
         "twig/twig": "^1.12.0"
     },
     "autoload": {
-        "psr-0": { "Avro\\CaseBundle": "" }
-    },
-    "target-dir": "Avro/CaseBundle"
+        "psr-4": { "Avro\\CaseBundle\\": "" }
+    }
 }
