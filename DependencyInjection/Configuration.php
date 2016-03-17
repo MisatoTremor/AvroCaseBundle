@@ -7,8 +7,8 @@
 
 namespace Avro\CaseBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
+use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 
 /**
  * This is the class that validates and merges configuration from your app/config files
@@ -25,7 +25,7 @@ class Configuration
         $treeBuilder = new TreeBuilder();
         $treeBuilder->root('avro_case', 'array')
             ->children()
-                ->booleanNode('use_twig')->defaultValue(true)->cannotBeEmpty()->end()
+                ->booleanNode('use_twig')->defaultValue(true)->end()
             ->end()
         ->end();
 
