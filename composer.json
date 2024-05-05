@@ -24,10 +24,10 @@
         "twig/twig": "^2.14 || ^3.0"
     },
     "require-dev": {
-        "symfony/config": "^5.4 || ^6.0",
-        "symfony/dependency-injection": "^5.4 || ^6.0",
-        "symfony/http-kernel": "^5.4 || ^6.0",
-        "symfony/phpunit-bridge": "^5.4 || ^6.0"
+        "symfony/config": "^5.4 || ^6.0 || ^7.0",
+        "symfony/dependency-injection": "^5.4 || ^6.0 || ^7.0",
+        "symfony/http-kernel": "^5.4 || ^6.0 || ^7.0",
+        "symfony/phpunit-bridge": "^5.4 || ^6.0 || ^7.0"
     },
     "conflict": {
         "twig/twig": "<2.14.7 || >=3.0 <3.3.3"
