@@ -6,6 +6,12 @@ CHANGELOG
 
  *
 
+1.1.2
+-----
+
+ * Fix symfony requirements to match code support
+ * Fix PHPUnit config schema location
+
 1.1.1
 -----
 
