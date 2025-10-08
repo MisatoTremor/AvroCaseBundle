@@ -19,9 +19,13 @@ class CaseConverter
     /**
      * Converts a string into underscore format (e.g. first_name).
      *
-     * @param string|array $input String
+     * @param string|array|null $input String
      *
-     * @return string|array $result In underscore format
+     * @return string|array|null $result In underscore format
+     *
+     * @template T of string|array|null
+     * @phpstan-param T         $input
+     * @phpstan-return T
      */
     public function toUnderscoreCase($input)
     {
@@ -38,9 +42,13 @@ class CaseConverter
     /**
      * Converts a string or array into title format (e.g. First Name).
      *
-     * @param string|array $input String
+     * @param string|array|null $input String
      *
-     * @return string|array $result In title case format
+     * @return string|array|null $result In title case format
+     *
+     * @template T of string|array|null
+     * @phpstan-param T         $input
+     * @phpstan-return T
      */
     public function toTitleCase($input)
     {
@@ -57,9 +65,13 @@ class CaseConverter
     /**
      * Converts a string to camel case format (e.g. firstName).
      *
-     * @param string|array $input String or array argument
+     * @param string|array|null $input String or array argument
      *
-     * @return string|array $result In camel case format
+     * @return string|array|null $result In camel case format
+     *
+     * @template T of string|array|null
+     * @phpstan-param T         $input
+     * @phpstan-return T
      */
     public function toCamelCase($input)
     {
@@ -76,9 +88,13 @@ class CaseConverter
     /**
      * Converts a string to pascal case format (e.g. FirstName).
      *
-     * @param string|array $input String or array argument
+     * @param string|array|null $input String or array argument
      *
-     * @return string|array $result In pascal case format
+     * @return string|array|null $result In pascal case format
+     *
+     * @template T of string|array|null
+     * @phpstan-param T         $input
+     * @phpstan-return T
      */
     public function toPascalCase($input)
     {
@@ -95,10 +111,14 @@ class CaseConverter
     /**
      * Convert string.
      *
-     * @param string|array $input  Input argument as string or array
-     * @param string|array $format Desired Case format
+     * @param string|array|null $input  Input argument as string or array
+     * @param string            $format Desired Case format
      *
-     * @return string|array
+     * @return string|array|null
+     *
+     * @template T of string|array|null
+     * @phpstan-param T         $input
+     * @phpstan-return T
      */
     public function convert($input, $format = 'camel')
     {
@@ -254,7 +274,7 @@ class CaseConverter
     /**
      * Converts a string to pascal case format (e.g. FirstName).
      *
-     * @param string|array $input String
+     * @param string $input String
      *
      * @return string $input translated into pascal case
      */
