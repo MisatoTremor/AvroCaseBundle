@@ -63,6 +63,29 @@ class CaseConverter
     }
 
     /**
+     * Converts a string into kebab format (e.g. first-name).
+     *
+     * @param string|array|null $input String
+     *
+     * @return string|array|null $result In kebab format
+     *
+     * @template T of string|array|null
+     * @phpstan-param T         $input
+     * @phpstan-return T
+     */
+    public function toKebabCase($input)
+    {
+        if (is_array($input)) {
+            return array_map([$this, 'toKebabCase'], $input);
+        }
+        if (is_string($input)) {
+            return $this->convertToKebabCase($input);
+        }
+
+        return $input;
+    }
+
+    /**
      * Converts a string to camel case format (e.g. firstName).
      *
      * @param string|array|null $input String or array argument
@@ -129,6 +152,9 @@ class CaseConverter
             case 'title':
                 return $this->toTitleCase($input);
                 break;
+            case 'kebab':
+                return $this->toKebabCase($input);
+                break;
             case 'underscore':
                 return $this->toUnderscoreCase($input);
                 break;
@@ -150,6 +176,9 @@ class CaseConverter
     {
         if (strpos($input, ' ')) {
             return 'title';
+        }
+        if (strpos($input, '-')) {
+            return 'kebab';
         }
         if (strpos($input, '_')) {
             return 'underscore';
@@ -235,6 +264,50 @@ class CaseConverter
         $input = str_replace(' ', '', $input);
 
         return ltrim($input, '_');
+    }
+
+    /**
+     * Converts a string into kebab format (e.g. first_name).
+     *
+     * @param string $input String
+     *
+     * @return string $input In kebab format
+     */
+    private function convertToKebabCase(string $input): string
+    {
+        $input = ucfirst(trim($input));
+
+        // lowercase title
+        $input = preg_replace_callback(
+            '/ ([a-z])/',
+            static function ($c) {
+                return ' '.ucfirst($c[1]);
+            },
+            $input
+        );
+
+        // camel case
+        $input = preg_replace_callback(
+            '/([A-Z])/',
+            static function ($c) {
+                return '-'.strtolower($c[1]);
+            },
+            $input
+        );
+
+        // underscore
+        $input = preg_replace_callback(
+            '/_([a-z])/',
+            static function ($c) {
+                return '-'.strtolower($c[1]);
+            },
+            $input
+        );
+
+        // title case
+        $input = str_replace(' ', '', $input);
+
+        return ltrim($input, '-');
     }
 
     /**

@@ -61,6 +61,17 @@ class CaseExtensionTest extends TestCase
         );
     }
 
+    public function testKebabCase()
+    {
+        $this->converter
+            ->method('toKebabCase')
+            ->willReturn('kebab-case');
+        $this->assertEquals(
+            'kebab-case',
+            $this->extension->toKebabCase('kebab case')
+        );
+    }
+
     public function testPascalCase()
     {
         $this->converter

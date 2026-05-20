@@ -5,7 +5,7 @@
     },
     "type": "symfony-bundle",
     "description": "Symfony Case Converter Bundle",
-    "keywords": ["pascal", "title", "camel", "converter"],
+    "keywords": ["pascal", "title", "kebab", "camel", "underscore", "converter"],
     "homepage": "http://github.com/MisatoTremor/AvroCaseBundle",
     "license": "MIT",
     "authors": [

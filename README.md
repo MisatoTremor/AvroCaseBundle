@@ -2,7 +2,7 @@ AvroCaseBundle [![Build Status](https://github.com/MisatoTremor/AvroCaseBundle/a
 --------------
 Convert strings or strings in arrays to different case formats.
 
-Supports: camelCase, PascalCase, Title Case, and underscore_case.
+Supports: camelCase, kebab-case, PascalCase, Title Case, and underscore_case.
 
 This is a fork of jdewits [original code](https://github.com/jdewit/AvroCaseBundle).
 
@@ -64,6 +64,7 @@ class SomeClass
     public function foo(string $str)
     {
         $camelCaseFormat = $this->converter->toCamelCase($str);
+        $kebabCaseFormat = $this->converter->toKebabCase($str);
         $pascalCaseFormat = $this->converter->toPascalCase($str);
         $titleCaseFormat = $this->converter->toTitleCase($str);
         $underscoreCaseFormat = $this->converter->toUnderscoreCase($str);
@@ -75,6 +76,7 @@ The following filters are also available if you use Twig
 
 ```twig
     {{ var | camel }}
+    {{ var | kebab }}
     {{ var | pascal }}
     {{ var | title }}
     {{ var | underscore }}

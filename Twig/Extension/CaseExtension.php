@@ -32,6 +32,7 @@ class CaseExtension extends AbstractExtension
     {
         return [
             new TwigFilter('camel', [$this, 'toCamelCase']),
+            new TwigFilter('kebab', [$this, 'toKebabCase']),
             new TwigFilter('pascal', [$this, 'toPascalCase']),
             new TwigFilter('underscore', [$this, 'toUnderscoreCase']),
             new TwigFilter('title', [$this, 'toTitleCase']),
@@ -48,6 +49,18 @@ class CaseExtension extends AbstractExtension
     public function toCamelCase($input)
     {
         return $this->caseConverter->toCamelCase($input);
+    }
+
+    /**
+     * Convert string to kebab case format.
+     *
+     * @param string|array|null $input
+     *
+     * @return string|array|null In kebab case
+     */
+    public function toKebabCase($input)
+    {
+        return $this->caseConverter->toKebabCase($input);
     }
 
     /**

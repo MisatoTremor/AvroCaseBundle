@@ -62,6 +62,20 @@ class CaseConverterTest extends TestCase
         ];
     }
 
+    public function kebabCaseProvider(): array
+    {
+        return [
+            ['kebabcaseformat', 'kebabcaseformat'], // All lower case
+            ['KEBABCASEFORMAT', 'k-e-b-a-b-c-a-s-e-f-o-r-m-a-t'], // All upper case
+            ['Kebab Case Format', 'kebab-case-format'], // Title
+            ['kebabCaseFormat', 'kebab-case-format'], // Camel
+            ['KebabCaseFormat', 'kebab-case-format'], // Kebab
+            ['kebab_case_format', 'kebab-case-format'], // Kebab
+            ['kebab case format', 'kebab-case-format'], // Words
+            [['kebab case format', 'kebab-case-format'], ['kebab-case-format', 'kebab-case-format']], // Array
+        ];
+    }
+
     public function pascalCaseProvider(): array
     {
         return [
@@ -116,6 +130,18 @@ class CaseConverterTest extends TestCase
 
     /**
      * @dataProvider unsupportedProvider
+     * @dataProvider kebabCaseProvider
+     */
+    public function testToKebabCase($source, $expected): void
+    {
+        $this->assertSame(
+            $expected,
+            $this->converter->toKebabCase($source)
+        );
+    }
+
+    /**
+     * @dataProvider unsupportedProvider
      * @dataProvider pascalCaseProvider
      */
     public function testToPascalCase($source, $expected): void
@@ -143,6 +169,10 @@ class CaseConverterTest extends TestCase
         $this->assertSame(
             'underscore_case_format',
             $this->converter->convert('underscoreCaseFormat', 'underscore')
+        );
+        $this->assertSame(
+            'kebab-case-format',
+            $this->converter->convert('kebabCaseFormat', 'kebab')
         );
         $this->assertSame(
             'camelCaseFormat',
@@ -202,6 +232,25 @@ class CaseConverterTest extends TestCase
         );
         $this->assertSame(
             [
+                'foo' => 'kebab-case-format1',
+                'bar' => [
+                    'kebab-case-format2',
+                    'kebab-case-format3',
+                ],
+            ],
+            $this->converter->convert(
+                [
+                    'foo' => 'kebabCaseFormat1',
+                    'bar' => [
+                        'kebab-case-format2',
+                        'Kebab Case Format3',
+                    ],
+                ],
+                'kebab'
+            )
+        );
+        $this->assertSame(
+            [
                 'foo' => 'camelCaseFormat1',
                 'bar' => [
                     'camelCaseFormat2',
@@ -247,6 +296,11 @@ class CaseConverterTest extends TestCase
         $this->assertSame(
             'underscore',
             $this->converter->getFormat('underscore_case_format')
+        );
+
+        $this->assertSame(
+            'kebab',
+            $this->converter->getFormat('underscore-case-format')
         );
 
         $this->assertSame(

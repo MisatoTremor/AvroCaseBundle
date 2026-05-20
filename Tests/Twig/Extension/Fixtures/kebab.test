@@ -1,0 +1,10 @@
+--TEST--
+"kebab" filter
+--TEMPLATE--
+{{ 'KEBABCASEFORMAT'|kebab }}
+{{ 'Kebab Case Format'|kebab }}
+--DATA--
+return [];
+--EXPECT--
+k-e-b-a-b-c-a-s-e-f-o-r-m-a-t
+kebab-case-format
